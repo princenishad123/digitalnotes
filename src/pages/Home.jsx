@@ -82,7 +82,7 @@ const Home = () => {
         </div>
 
         {/* this is for latest topics */}
-        <div className="w-full min-h-72 border dark:border-gray-600 shadow-sm p-2 dark:bg-slate-800">
+        <div className="w-full min-h-72  dark:border-gray-600 shadow-sm p-2 dark:bg-slate-800">
           <h2 className="text-xl font-semibold">Latest Topics & Tricks</h2>
           <div>
             {allLatest.map((q) => (
@@ -90,6 +90,7 @@ const Home = () => {
                 question={q.question}
                 id={q.id}
                 key={q.id}
+                description={q.description}
                 topic={q.topic}
                 name={"notes"}
               />

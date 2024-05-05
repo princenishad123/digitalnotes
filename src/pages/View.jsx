@@ -6,22 +6,27 @@ import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlig
 
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+import { MdOutlineContentCopy } from "react-icons/md";
+import { FaCheck } from "react-icons/fa6";
+
 const View = () => {
   const { name, id } = useParams();
   const [content, setContent] = useState("");
   const [question, setQuestion] = useState("");
-  const [copy, setCopy] = useState("Copy code");
+  const [description, setDescription] = useState("");
+  const [copy, setCopy] = useState(<MdOutlineContentCopy />);
 
   services.getOneDoc(name, id).then((res) => {
     setContent(res.content);
     setQuestion(res.question);
+    setDescription(res.description);
   });
 
   const copyCode = () => {
     navigator.clipboard.writeText(content);
-    setCopy("Code copyed");
+    setCopy(<FaCheck />);
     setTimeout(() => {
-      setCopy("Copy code");
+      setCopy(<MdOutlineContentCopy />);
     }, 3000);
   };
 
@@ -33,14 +38,15 @@ const View = () => {
       keyword={"HTML,CSS,JavaScripr,React"}
     >
       <div className="p-2 z-10">
-        <h2 className="p-3 my-3 rounded-md text-2xl max-sm:text-xl bg-gray dark:bg-gray-700 border dark:border-gray-700">
+        <h4 className=" mt-4 rounded-md text-2xl max-sm:text-xl bg-gray dark:bg-gray-700 dark:border-gray-700">
           {question}
-        </h2>
+        </h4>
+        <p className="description my-2">{description}</p>
 
         <div className="bg-slate-800 relative">
           <button
             onClick={copyCode}
-            className="py-1 px-3 rounded-md border dark:bg-gray-700 text-white  bg-purple-500"
+            className="float-end m-2 text-[1rem] py-1 px-2 rounded-md  dark:bg-gray-700 text-white  bg-gray-500"
           >
             {copy}
           </button>

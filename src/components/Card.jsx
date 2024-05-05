@@ -7,7 +7,7 @@ import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Card = () => {
   let [code, setCode] = useState("");
-  //his is just for testing
+  //this is just for testing
   function showcode() {
     console.log(code);
   }

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 import ThemeContext from "../../context/ThemeContext/ThemeContext";
 import { Helmet } from "react-helmet";
 
@@ -21,6 +22,7 @@ const Layout = ({ children, title = "Home", description, author, keyword }) => {
       >
         {children}
       </main>
+      <Footer />
     </div>
   );
 };

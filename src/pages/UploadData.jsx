@@ -7,6 +7,7 @@ const UploadData = () => {
   const [course, setCourse] = useState("notes");
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [button, setButton] = useState("Uplaod");
   const upload = (e) => {
     e.preventDefault();
@@ -15,13 +16,15 @@ const UploadData = () => {
       course: course,
       id: id,
       question: title,
+      description: description,
       content: content,
     };
-    setButton("uploading...");
+    setButton("Uploading...");
     services.uploadNotes(data).then((res) => {
       toast.success(res);
       setContent("");
       setTitle("");
+      setDescription("");
       setButton("Upload");
     });
   };
@@ -35,12 +38,12 @@ const UploadData = () => {
       <div className="w-4/5 max-sm:w-full max-sm:px-4 h-auto mx-auto dark:bg-slate-900 border border-transparent">
         <div>
           <div className="my-4 ">
-            <h1 className="text-2xl font-semibold">Upload Syntax </h1>
+            <h1 className="text-2xl font-semibold">Upload Topics</h1>
           </div>
           <form onSubmit={upload}>
             <div className="my-1">
               <div className="flex justify-between items-center   border py-1 px-3 rounded-md dark:border-gray-700 my-2">
-                <span className="font-semibold "> Choose Course</span>
+                <span className="font-semibold "> Choose Language</span>
                 <select
                   required
                   className="dark:bg-gray-700 border  dark:border-gray-700 py-1 px-3 rounded-md e"
@@ -68,9 +71,19 @@ const UploadData = () => {
               />
             </div>
             <div>
+              <span>Desciption</span> <br />
               <textarea
                 name=""
-                className="w-full mx-auto border dark:border-gray-700 rounded-md outline-none dark:bg-slate-700 focus:border-blue-500 bg-gray-100 dark:text-white min-h-96 p-2 valid:border-blue-500"
+                className="w-full mx-auto border dark:border-gray-700 rounded-md outline-none dark:bg-slate-700 focus:border-blue-500 bg-gray-100 dark:text-white min-h-28 p-2 valid:border-blue-500"
+                placeholder="Description"
+                required
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+              <span>Code Syntax</span> <br />
+              <textarea
+                name=""
+                className="w-full mx-auto border dark:border-gray-700 rounded-md outline-none dark:bg-slate-700 focus:border-blue-500 bg-gray-100 dark:text-white min-h-72 p-2 valid:border-blue-500"
                 placeholder="Write Syntax"
                 required
                 value={content}

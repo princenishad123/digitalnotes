@@ -8,11 +8,12 @@ class service {
     this.db = getFirestore(database);
   }
 
-  async uploadNotes({ course, id, question, content }) {
+  async uploadNotes({ course, id, question, content, description }) {
     try {
       await setDoc(doc(this.db, course, id), {
         question: question,
         content: content,
+        description: description,
         id: id,
       });
 
